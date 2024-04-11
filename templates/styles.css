@@ -1,0 +1,203 @@
+:root {
+    --blaze: #FF5B22;
+    --flame: #FF9130;
+    --candle: #FECDA6;
+    --cool: #b4efff;
+    --subtle: #A9A9A9;
+    --subtle-light: #d6d6d6;
+    --bg: #505050;
+}
+
+.light-mode {
+  --bg: white;
+}
+
+#dark-toggle {
+    border-radius: 1em;
+    display: inline;
+}
+
+@media print {
+    :root {
+        --bg: white;
+    }
+
+    #dark-toggle {
+        display: none;
+    }
+}
+
+@font-face {
+    font-family: 'Carnival';
+    src: url('Boldest_Enough.otf')
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 1em 0em;
+    background: var(--bg);
+    background-clip: content-box;
+    font-size: 14px;
+    display: inline;
+}
+h2 {
+    padding: 0em;
+    margin: .3em;
+    font-size: 1em;
+}
+
+
+.cards-container {
+    display: inline;
+}
+
+.card {
+    width: 6.2cm;
+    height: 8.7cm;
+    border: .4em solid var(--subtle);
+    border-radius: .5em;
+    overflow: hidden;
+    background-color: var(--bg);
+    display: inline-flex;
+    flex-direction: column;
+    page-break-inside: avoid;
+    margin: 0em -.2em;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+.card-interior {
+    display: flex;
+}
+
+.card-header, .card-image {
+/*    border-bottom: 2px solid var(--subtle);*/
+}
+
+.card-header {
+    font-family: Carnival;
+    font-weight: bold;
+    font-size: 1.9em;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Ensures that children stretch to fill the height */
+    background-color: var(--bg);
+    padding: .3em;
+}
+
+.card-name {
+    flex-grow: 1; /* Allows the element to grow and take up available space */
+    display: flex;
+    align-items: center;
+}
+
+.card-heat, .card-number {
+    background-color: white;
+
+    width: 1.5em;
+    height: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+}
+
+.card-image {
+    width: auto;
+    min-height: 4.725cm;
+    max-height: 4.725cm;
+    height: 4.725cm;
+
+    object-fit: contain;
+    object-position: bottom;
+}
+.life-image {
+    width: auto;
+    max-height: 6.3cm;
+    object-fit: contain;
+    object-position: bottom;
+}
+
+.card-body {
+    padding: .3em;
+    padding-bottom: 0em;
+    display: flex;
+    flex-direction: column;
+    white-space: pre-line;
+}
+
+.card-body p, .card-body i {
+    margin: .1em 0em;
+}
+.card-body i {
+    padding-top: .2em;
+}
+
+.card-footer {
+    padding: .5em;
+    padding-top: 0em;
+    font-style: italic;
+    font-size: 0.6em;
+    color: gray;
+    white-space: pre-line;
+    margin-top: auto;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    font-weight: bold;
+    text-align: left;
+}
+
+td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    vertical-align: top;
+}
+
+td.name {
+    font-size: 1.2em;
+}
+
+tr:nth-child(even) {
+    background-color: var(--subtle-light);
+}
+
+tr:nth-child(odd) {
+    background-color: var(--bg);
+}
+
+
+.page-break {
+    display: none;
+}
+
+@media print {
+    .page-break {
+        display: block;
+        page-break-after: always;
+    }
+    h2 {
+        display: none;
+    }
+}
+
+.meta-rules {
+    width: 8in;
+    height: 10in;
+/*    border: 1px solid var(--subtle);*/
+    font-size: 12px;
+}
+
+.quick-guide {
+    position: absolute;
+    left: 20em;
+    top: 12em;
+    border: 1px solid var(--subtle);
+    padding: 1em;
+    width: 4.5in;
+}

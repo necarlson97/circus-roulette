@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="dark-mode-toggle.js"></script>
+</head>
+<body>
+    <button id="dark-toggle">🌞</button>
+    {% from "_card.j2" import build_card, build_life %}
+
+
+
+    <h2> Reprints </h2>
+    <div class="cards-container">
+        {% for card_type, i in Card.reprints().items() %}
+            {{  build_card(card_type, i+1) }}
+        {% endfor %}
+    </div>
+
+    <h2> Lives </h2>
+    <div class="cards-container">
+        {% for life_type in Life.sorted_types() %}
+            {% for i in range(life_type.count) %}
+                {{  build_life(life_type, i+1) }}
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <h2> All Cards </h2>
+    <div class="cards-container">
+        {% for card_type in Card.sorted_types() %}
+            {% for i in range(card_type.count) %}
+                {{  build_card(card_type, i+1) }}
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+</body>
+</html>
