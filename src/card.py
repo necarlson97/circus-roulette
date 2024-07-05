@@ -86,7 +86,7 @@ class HandOff(Card):
 class Premonition(Card):
     count = 6
     description = (
-        "Inspect the gun"
+        "Inspect the gun. Take it, look it over - but do not open it. Then give it back to the gun holder"
     )
     flavor_text = (
         '"Forewarned is forearmed. Especially useful when the arms in '

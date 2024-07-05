@@ -142,6 +142,11 @@ h2 {
     margin-top: auto;
     text-align: center;
 }
+.discard-text {
+    font-style: italic;
+    font-size: 0.6em;
+    color: gray;
+}
 
 table {
     width: 100%;
