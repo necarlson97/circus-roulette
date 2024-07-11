@@ -45,11 +45,29 @@ class Card(NamedClass):
             # Silence: 0,
         }
 
+    discard_cost = 2
+
+    @classmethod
+    def get_discard_text(cls):
+        if cls.discard_cost == 0:
+            return ""
+        plural = ""
+        if cls.discard_cost > 1:
+            plural = "s"
+        return (
+            f"Before playing, discard {cls.discard_cost} "
+            f"other card{plural}."
+        )
+
+    @classmethod
+    def total(cls):
+        return sum(card_type.count for card_type in Card.sorted_types())
+
 """
 Below, all card types are defined:
 """
 class PullHarder(Card):
-    count = 2
+    count = 4
     description = "Gun holder shoots themself (again)"
     flavor_text = (
         '"Second verse, same as the first.\n'
@@ -84,7 +102,8 @@ class HandOff(Card):
     )
 
 class Premonition(Card):
-    count = 6
+    count = 2
+    discard_cost = 1
     description = (
         "Inspect the gun. Take it, look it over - but do not open it. Then give it back to the gun holder"
     )
@@ -95,7 +114,8 @@ class Premonition(Card):
     )
 
 class PatDown(Card):
-    count = 2
+    discard_cost = 0
+    count = 1
     description = (
         "Inspect a players pocket rounds "
         "(just look, no pulling apart rounds)"
@@ -107,6 +127,7 @@ class PatDown(Card):
     )
 
 class PickPocket(Card):
+    discard_cost = 1
     count = 1
     description = (
         "Choose a round from another pocket, swap it with one of your own"
@@ -118,7 +139,7 @@ class PickPocket(Card):
     )
 
 class Betrayal(Card):
-    count = 2
+    count = 4
     description = (
         "The gun holder fires at anyone (victim can win the casing)"
     )
@@ -128,9 +149,10 @@ class Betrayal(Card):
     )
 
 class Spin(Card):
+    discard_cost = 1
     count = 2
     description = (
-        "Spin the cylinder"
+        "Spin the cylinder, then hand it back to the gun holder."
     )
     flavor_text = (
         '"Time to turn your luck around!"'
@@ -140,13 +162,13 @@ class Spin(Card):
     def human_name():
         return "Spin!"
 
-class CeilingShot(Card):
+class TableShot(Card):
     count = 2
     description = (
-        "Fire the gun into the air\n(nobody gets the casing)"
+        "Fire the gun into the table\n(nobody gets the casing)"
     )
     flavor_text = (
-        '"One for the big man upstairs!"'
+        '"One for the big man downstairs!"'
         '\n— Cannonman Carl'
     )
 
@@ -172,7 +194,7 @@ class OneForOne(Card):
     )
 
 class Wrestle(Card):
-    count = 1
+    count = 2
     description = (
         "Gun holder shoots at you. Then you get the gun."
     )
@@ -185,7 +207,7 @@ class Wrestle(Card):
 class Flirt(Card):
     count = 1
     description = (
-        "Choose a player to discard a card"
+        "Choose a player to discard 2 cards"
     )
     flavor_text = (
         '"A wink, a smile, and oh, what\'s this?\n'
@@ -194,7 +216,8 @@ class Flirt(Card):
     )
 
 class Clairvoyance(Card):
-    count = 4
+    discard_cost = 1
+    count = 2
     description = (
         "Inspect another player's cards"
     )
@@ -215,6 +238,7 @@ class PublicShaming(Card):
     )
 
 class Silence(Card):
+    discard_cost = 3
     count = 2
     description = (
         "Cancel a card"
@@ -234,6 +258,32 @@ class BiteBullet(Card):
         '"You\'ve got to eat lead to get ahead. '
         'Just make sure the bite\'s worth the chew."'
         '\n~ "Chomper" Malone'
+    )
+
+class ShowDontTell(Card):
+    count = 1
+    discard_cost = 3
+    description = (
+        "Take the gun, shoot yourself, "
+        "then open the cylinder and rotate it how you like."
+    )
+    flavor_text = (
+        '''"I'm dealing with fools and trolls and soft targets. '''
+        '''I don't have time for these clowns."'''
+        '\n~ Charles the Smiler'
+    )
+    def human_name():
+        return "Show, Don't Tell"
+
+class MerryGoRound(Card):
+    count = 2
+    description = (
+        "Place the gun on the table and spin it. "
+        "Whoever it points to is the new gun holder."
+    )
+    flavor_text = (
+        '"Whee!"'
+        '\n~ Twirly Tina'
     )
 
 

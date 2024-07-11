@@ -76,7 +76,7 @@ h2 {
 .card-header {
     font-family: Carnival;
     font-weight: bold;
-    font-size: 1.9em;
+    font-size: 1.8em;
     display: flex;
     justify-content: space-between;
     align-items: stretch; /* Ensures that children stretch to fill the height */

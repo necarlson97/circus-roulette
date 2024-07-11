@@ -7,15 +7,16 @@
 <body>
     <button id="dark-toggle">🌞</button>
     {% from "_card.j2" import build_card, build_life %}
+    <div></div>
 
-
-
-    <h2> Reprints </h2>
-    <div class="cards-container">
-        {% for card_type, i in Card.reprints().items() %}
-            {{  build_card(card_type, i+1) }}
-        {% endfor %}
-    </div>
+    {%  if Card.reprints()|length > 0 %}
+        <h2> Reprints </h2>
+        <div class="cards-container">
+            {% for card_type, i in Card.reprints().items() %}
+                {{  build_card(card_type, i+1) }}
+            {% endfor %}
+        </div>
+    {% endif %}
 
     <h2> Lives </h2>
     <div class="cards-container">
@@ -26,7 +27,7 @@
         {% endfor %}
     </div>
 
-    <h2> All Cards </h2>
+    <h2> All {{ Card.total() }} Cards </h2>
     <div class="cards-container">
         {% for card_type in Card.sorted_types() %}
             {% for i in range(card_type.count) %}

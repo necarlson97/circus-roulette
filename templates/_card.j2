@@ -5,7 +5,7 @@
         </div>
         <img src="images/{{ card_type.name }}-{{i}}.png" class="card-image">
         <div class="card-body">
-            <span class='discard-text'>Before playing, discard two other cards.</span>
+            <span class='discard-text'>{{ card_type.get_discard_text() }}</span>
             <p>{{ card_type.description }}</p>
         </div>
         <div class="card-footer">{{ card_type.flavor_text }}</div>
